@@ -16,7 +16,8 @@ class App extends Component {
   deleteCharHandler = (index) => {
     const inputAsArray = this.state.input.split('')
     inputAsArray.splice(index, 1)
-    this.setState({input: inputAsArray.join('')})
+    const inputUpdated = inputAsArray.join('')
+    this.setState({input: inputUpdated})
   }
 
   render() {
@@ -30,7 +31,7 @@ class App extends Component {
         <Validation inputLength={this.state.input.length} />
           
         {inputAsArray.map((letter, index) => 
-          <Char letter={letter} click={ () => this.deleteCharHandler(index) } />
+          <Char key={index} letter={letter} click={ () => this.deleteCharHandler(index) } />
         )}
 
         <p>length: {this.state.input.length}</p>
